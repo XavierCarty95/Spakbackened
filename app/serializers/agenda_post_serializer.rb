@@ -1,4 +1,6 @@
 class AgendaPostSerializer < ActiveModel::Serializer
-  attributes :id, :post
-  has_one :user_id
+  attributes :id, :user , :post , :comments , :likes
+  has_many  :comments
+ 
+
 end

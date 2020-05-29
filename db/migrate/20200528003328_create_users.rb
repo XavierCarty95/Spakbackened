@@ -9,6 +9,7 @@ class CreateUsers < ActiveRecord::Migration[6.0]
       t.string :initiation_year
       t.string :position
       t.string :image
+      t.string :secret
 
       t.timestamps
     end

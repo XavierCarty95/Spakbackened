@@ -10,23 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_25_190655) do
+ActiveRecord::Schema.define(version: 2020_05_29_175346) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "agenda_posts", force: :cascade do |t|
     t.string "post"
-    t.bigint "user_id", null: false
+    t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "likes"
     t.index ["user_id"], name: "index_agenda_posts_on_user_id"
   end
 
   create_table "comments", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "agenda_post_id", null: false
-    t.string "comments"
+    t.bigint "user_id"
+    t.bigint "agenda_post_id"
+    t.string "comment_text"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["agenda_post_id"], name: "index_comments_on_agenda_post_id"
@@ -42,11 +43,9 @@ ActiveRecord::Schema.define(version: 2020_05_25_190655) do
     t.string "initiation_year"
     t.string "position"
     t.string "image"
+    t.string "secret"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key "agenda_posts", "users"
-  add_foreign_key "comments", "agenda_posts"
-  add_foreign_key "comments", "users"
 end
