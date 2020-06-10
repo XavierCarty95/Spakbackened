@@ -1,8 +1,8 @@
 class ApplicationController < ActionController::API
-
+  SPAK_API_KEY = ENV['spak_api_key']
     def encode_token(payload)
       # should store secret in env variable
-      JWT.encode(payload, 'def123')
+      JWT.encode(payload, SPAK_API_KEY)
     end
   
   
@@ -16,7 +16,7 @@ class ApplicationController < ActionController::API
         token = auth_header
         # header: { 'Authorization': '<token>' }
         begin
-          JWT.decode(token, 'def123', true, algorithm: 'HS256')
+          JWT.decode(token, SPAK_API_KEY, true, algorithm: 'HS256')
         rescue JWT::DecodeError
           nil
         end
